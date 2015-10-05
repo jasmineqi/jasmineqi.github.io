@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>W209 HW3</title>
+    <style type="text/css">
+      div.bar {
+        display: inline-block; 
+        width: 20px; 
+        height: 75px;
+        margin-right: 2px;
+        background-color: teal;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mydiv">
+      <p>W209 Assignment 3: Visualization with D3</p>
+      <p>Jasmine Tianjiao Qi</p>
+      <p>My Workout Time (in min) in the Past 20 Days</p>
+    </div>
+    <script type="text/javascript" src="d3.min.js"></script>
+    <script type="text/javascript">
+      d3.selectAll("p").style('color','grey').style('font-size','20px')
+      var dataset = [30, 20, 40, 30, 50, 20, 35, 25, 40, 10, 0, 60, 30, 20, 15, 0, 30, 20, 15, 40];
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("height", function(d) {
+          var barHeight = d * 5;
+          return barHeight + "px";
+        });
+
+    </script>
+  </body>
+</html>
