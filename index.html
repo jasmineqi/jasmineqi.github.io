@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>W209 HW3</title>
+    <title>W209 HW5</title>
     <style type="text/css">
       div.bar {
         display: inline-block; 
@@ -15,14 +15,22 @@
   </head>
   <body>
     <div id="mydiv">
-      <p>W209 Assignment 3: Visualization with D3</p>
+      <p>W209 Assignment 5: Interaction with D3</p>
       <p>Jasmine Tianjiao Qi</p>
       <p>My Workout Time (in min) in the Past 20 Days</p>
     </div>
-    <script type="text/javascript" src="d3.min.js"></script>
+    <div id="option">
+    <input name="updateButton" 
+                 type="button" 
+                value="Show Plot Only" 
+                onclick="update()" />
+    </div>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript">
       d3.selectAll("p").style('color','grey').style('font-size','20px')
       var dataset = [30, 20, 40, 30, 50, 20, 35, 25, 40, 10, 0, 60, 30, 20, 15, 0, 30, 20, 15, 40];
+
+      function plot(dataset){
       d3.select("body").selectAll("div")
         .data(dataset)
         .enter()
@@ -32,6 +40,23 @@
           var barHeight = d * 5;
           return barHeight + "px";
         });
+      }
+
+      plot(dataset)
+
+      function update(){
+        d3.select("body").select("div").remove()
+      }
+
+      d3.select("body").select("div")
+        .on("click", changeFont);
+
+      function changeFont(){
+        var vis = d3.select("body").transition();
+        vis.selectAll("p")   
+              .duration(750)
+        .style('color','blue');
+      }
 
     </script>
   </body>
